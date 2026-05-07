@@ -1,4 +1,4 @@
-package com.retailpulse.model;
+package com.retailpulse.backend.model;
 
 public enum OrderChannel {
     ONLINE,

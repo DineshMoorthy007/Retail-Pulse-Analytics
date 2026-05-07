@@ -1,8 +1,7 @@
-package com.retailpulse.repository;
+package com.retailpulse.backend.repository;
 
-import com.retailpulse.model.Customer;
-import com.retailpulse.model.OrderChannel;
-import com.retailpulse.model.RetailOrder;
+import com.retailpulse.backend.model.OrderChannel;
+import com.retailpulse.backend.model.RetailOrder;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,10 +27,10 @@ public interface RetailOrderRepository extends JpaRepository<RetailOrder, Long> 
      * 2. Top N customers by total spending.
      * Note: Pass `PageRequest.of(0, N)` as the Pageable argument to limit the results.
      */
-    @Query("SELECT c AS customer, SUM(ro.totalAmount) AS totalSpent " +
+    @Query("SELECT c.id AS customerId, c.name AS name, c.email AS email, SUM(ro.totalAmount) AS totalSpent " +
            "FROM RetailOrder ro " +
            "JOIN ro.customer c " +
-           "GROUP BY c " +
+           "GROUP BY c.id, c.name, c.email " +
            "ORDER BY SUM(ro.totalAmount) DESC")
     List<CustomerSpending> getTopCustomersBySpending(Pageable pageable);
 
@@ -51,7 +50,9 @@ public interface RetailOrderRepository extends JpaRepository<RetailOrder, Long> 
     }
 
     interface CustomerSpending {
-        Customer getCustomer();
+        Long getCustomerId();
+        String getName();
+        String getEmail();
         BigDecimal getTotalSpent();
     }
 

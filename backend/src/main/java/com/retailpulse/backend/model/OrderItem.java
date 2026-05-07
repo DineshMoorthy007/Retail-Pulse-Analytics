@@ -1,4 +1,4 @@
-package com.retailpulse.model;
+package com.retailpulse.backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,7 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "order_items")
+@Table(name = "order_item")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,6 +29,6 @@ public class OrderItem {
     @Column(nullable = false)
     private Integer quantity;
 
-    @Column(nullable = false)
+    @Column(name = "subtotal", nullable = false)
     private BigDecimal subTotal;
 }

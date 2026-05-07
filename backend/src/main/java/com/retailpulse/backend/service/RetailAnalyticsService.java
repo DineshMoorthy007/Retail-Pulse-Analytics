@@ -1,6 +1,6 @@
-package com.retailpulse.service;
+package com.retailpulse.backend.service;
 
-import com.retailpulse.repository.RetailOrderRepository;
+import com.retailpulse.backend.repository.RetailOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -24,10 +24,9 @@ public class RetailAnalyticsService {
         return retailOrderRepository.getTopCustomersBySpending(PageRequest.of(0, limit))
                 .stream()
                 .map(cs -> new CustomerSpendingDTO(
-                        cs.getCustomer().getId(),
-                        cs.getCustomer().getFirstName(),
-                        cs.getCustomer().getLastName(),
-                        cs.getCustomer().getEmail(),
+                        cs.getCustomerId(),
+                        cs.getName(),
+                        cs.getEmail(),
                         cs.getTotalSpent()
                 ))
                 .toList();
@@ -40,8 +39,7 @@ public class RetailAnalyticsService {
     // DTO formatted purely for frontend consumption
     public record CustomerSpendingDTO(
             Long customerId,
-            String firstName,
-            String lastName,
+            String name,
             String email,
             BigDecimal totalSpent
     ) {}

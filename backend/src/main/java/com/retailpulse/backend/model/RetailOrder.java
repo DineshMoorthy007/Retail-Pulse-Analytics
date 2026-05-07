@@ -1,4 +1,4 @@
-package com.retailpulse.model;
+package com.retailpulse.backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "retail_orders")
+@Table(name = "retail_order")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class RetailOrder {
     private Customer customer;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "channel", nullable = false)
     private OrderChannel orderChannel;
 
     @Column(nullable = false)

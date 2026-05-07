@@ -1,9 +1,9 @@
-package com.retailpulse.controller;
+package com.retailpulse.backend.controller;
 
-import com.retailpulse.repository.RetailOrderRepository.AovByChannel;
-import com.retailpulse.repository.RetailOrderRepository.SalesByCategory;
-import com.retailpulse.service.RetailAnalyticsService;
-import com.retailpulse.service.RetailAnalyticsService.CustomerSpendingDTO;
+import com.retailpulse.backend.repository.RetailOrderRepository.AovByChannel;
+import com.retailpulse.backend.repository.RetailOrderRepository.SalesByCategory;
+import com.retailpulse.backend.service.RetailAnalyticsService;
+import com.retailpulse.backend.service.RetailAnalyticsService.CustomerSpendingDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/analytics")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // Prevents CORS errors when the React frontend connects from a different port
+@CrossOrigin(origins = "http://localhost:5173")
 public class RetailAnalyticsController {
 
     private final RetailAnalyticsService analyticsService;

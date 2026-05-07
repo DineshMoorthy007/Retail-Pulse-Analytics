@@ -154,7 +154,7 @@ export default function Dashboard() {
                         <tr key={customer.customerId} className="hover:bg-gray-50/50 transition-colors group">
                           <td className="px-4 py-3.5">
                             <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                              {customer.firstName} {customer.lastName}
+                              {customer.name}
                             </div>
                             <div className="text-xs text-gray-500 mt-0.5">{customer.email}</div>
                           </td>
