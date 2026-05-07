@@ -122,9 +122,3 @@ Contributions are welcome. Please adhere to the following guidelines:
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-## Contact
-
-**Project Maintainer** - [Your Name](mailto:your.email@example.com)
-
-Project Link: [https://github.com/yourusername/Retail-Pulse-Analytics](https://github.com/yourusername/Retail-Pulse-Analytics)

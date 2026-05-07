@@ -1,0 +1,22 @@
+# Build outputs
+target/
+build/
+.gradle/
+*.class
+*.jar
+*.war
+*.ear
+
+# Version control
+.git/
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
