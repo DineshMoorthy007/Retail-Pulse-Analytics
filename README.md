@@ -1,6 +1,6 @@
 # Retail Pulse Analytics
 
-![Java](https://img.shields.io/badge/Java-17-blue?logo=openjdk&logoColor=white)
+![Java](https://img.shields.io/badge/Java-21-blue?logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?logo=spring&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-Latest-646CFF?logo=vite&logoColor=white)
@@ -31,7 +31,7 @@ graph TD
     end
 
     subgraph Data Layer
-        C[(MySQL 8.0<br>Port 3306)]
+        C[(MySQL 8.0<br>Port 3307)]
     end
 
     %% Styles
@@ -68,9 +68,16 @@ The entire application stack is containerized, ensuring a consistent execution e
    ```
    *Note: The `backend-api` container is programmed to wait automatically until the `mysql-db` container passes its health check.*
 
-3. **Access the application:**
+3. **Accessing the application:**
    - **Frontend UI:** [http://localhost:5173](http://localhost:5173) (Served internally via Nginx)
    - **Backend API:** [http://localhost:8080/api/analytics](http://localhost:8080/api/analytics)
+
+4. **Accessing the Database:**
+   The database automatically seeds itself with initial retail data via `init.sql`. Access the MySQL shell directly inside the container using:
+   ```bash
+   docker exec -it mysql-db mysql -u root -prootpassword retail_pulse
+   ```
+   *Alternatively, connect a local SQL client (e.g., DBeaver, DataGrip) to `localhost:3307` using user `appuser` and password `apppassword`.*
 
 ## Architectural Design: JPA Projections
 

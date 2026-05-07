@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer 
 } from 'recharts';
 import { 
-  LayoutDashboard, ShoppingCart, Users, Settings, LogOut, TrendingUp, DollarSign 
+  LayoutDashboard, ShoppingCart, Users, Settings, LogOut, TrendingUp, IndianRupee 
 } from 'lucide-react';
 
 const API_BASE = 'http://localhost:8080/api/analytics';
@@ -84,15 +84,15 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <KpiCard 
                 title="Avg. Order Value - Online" 
-                value={`$${Number(aov.ONLINE).toFixed(2)}`}
-                icon={<DollarSign className="text-blue-600" size={28} />}
+                value={`₹${Number(aov.ONLINE).toFixed(2)}`}
+                icon={<IndianRupee className="text-blue-600" size={28} />}
                 gradient="from-blue-50 to-blue-100"
                 borderColor="border-blue-200"
               />
               <KpiCard 
                 title="Avg. Order Value - In-Store" 
-                value={`$${Number(aov.IN_STORE).toFixed(2)}`}
-                icon={<DollarSign className="text-purple-600" size={28} />}
+                value={`₹${Number(aov.IN_STORE).toFixed(2)}`}
+                icon={<IndianRupee className="text-purple-600" size={28} />}
                 gradient="from-purple-50 to-purple-100"
                 borderColor="border-purple-200"
               />
@@ -121,13 +121,13 @@ export default function Dashboard() {
                       <YAxis 
                         axisLine={false} 
                         tickLine={false} 
-                        tickFormatter={(val) => `$${val}`} 
+                        tickFormatter={(val) => `₹${val}`} 
                         tick={{ fill: '#64748b', fontSize: 13 }}
                       />
                       <Tooltip 
                         cursor={{fill: '#f8fafc'}}
                         contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
-                        formatter={(value) => [`$${value}`, 'Sales']}
+                        formatter={(value) => [`₹${value}`, 'Sales']}
                       />
                       <Bar dataKey="totalSales" fill="#3b82f6" radius={[6, 6, 0, 0]} barSize={40} />
                     </BarChart>
@@ -159,7 +159,7 @@ export default function Dashboard() {
                             <div className="text-xs text-gray-500 mt-0.5">{customer.email}</div>
                           </td>
                           <td className="px-4 py-3.5 text-right font-bold text-gray-700">
-                            ${Number(customer.totalSpent).toFixed(2)}
+                            ₹{Number(customer.totalSpent).toFixed(2)}
                           </td>
                         </tr>
                       ))}
