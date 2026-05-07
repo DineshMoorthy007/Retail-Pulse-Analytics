@@ -1,0 +1,38 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: retail_pulse
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend-api:
+    build: 
+      context: ./backend # Assuming backend code is in this directory
+    container_name: backend-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/retail_pulse
+      SPRING_DATASOURCE_USERNAME: appuser
+      SPRING_DATASOURCE_PASSWORD: apppassword
+
+  frontend-ui:
+    build: 
+      context: ./frontend # Assuming frontend code is in this directory
+    container_name: frontend-ui
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend-api
+
+volumes:
+  mysql_data:
